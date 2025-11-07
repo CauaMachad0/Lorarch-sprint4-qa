@@ -72,35 +72,10 @@ O relatório HTML será salvo em `evidence/newman-report.html`.
 O plano completo com casos (entradas, saídas e passos) está em:  
 `docs/Plano_de_Testes_LorArch_Sprint4_Completo.docx`
 
-Crie os **Test Cases** no Azure Boards e anexe as evidências (prints).
-
 ---
 
 ## 🔗 Links de Entrega
 Preencha aqui antes de enviar:
-- **Azure Boards (item da Sprint 4):** _cole o link do item aqui_
+- **Azure Boards (item da Sprint 4):** (https://dev.azure.com/lorarch/LorArch/_workitems/edit/138)
 - **Vídeo da execução (Postman Runner/Newman):** _cole o link aqui_
 
----
-
-## 🚀 Como publicar este repositório
-```bash
-# 1) Iniciar git
-git init
-git add .
-git commit -m "Sprint 4 - Compliance & QA (docs + tests + evidence)"
-# 2) Criar repositório no GitHub (pelo site) e copiar a URL
-git branch -M develop
-git remote add origin https://github.com/<seu-usuario>/lorarch-sprint4-qa.git
-git push -u origin develop
-```
-
----
-
-## ✅ Checklist de conformidade (FIAP)
-- [x] Plano de testes manuais com entradas/saídas/passos
-- [x] ≥ 4 testes automatizados com Postman
-- [x] Vídeo de execução anexado
-- [x] Repositório público + branch `develop`
-- [x] Link do Azure Boards disponível
-- [x] Item no Boards com anexos e status **Done**
