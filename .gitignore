@@ -1,0 +1,23 @@
+# Java / Gradle / IntelliJ
+.gradle/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+.gradle/
+**/bin/
+# IntelliJ
+.idea/
+*.iml
+# Logs
+logs/
+*.log
+# OS
+.DS_Store
+Thumbs.db
+# Node (if any frontend)
+node_modules/
+# Env / Secrets
+.env
+*.env
+application-local.yml
+application-local.properties
