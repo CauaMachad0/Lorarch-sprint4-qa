@@ -1,0 +1,552 @@
+{
+  "info": {
+    "name": "LorArch Sprint 4 - API Java (Postman Collection)",
+    "_postman_id": "b2a86eb7-1c9e-4b3c-9f2c-0e9f0fb07a77",
+    "description": "LorArch Sprint 4 — Collection focada em Motos e Ocorrências (sem login). Base URL usa variável {{baseUrl}} = http://localhost:8081/api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Motos",
+      "item": [
+        {
+          "name": "GET /motos (lista)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/motos?page=0&size=10&sort=id,desc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "motos?page=0&size=10&sort=id,desc"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /motos/{id}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/motos/{{motoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "motos",
+                "{{motoId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /motos (criar)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/motos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "motos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"sku\": \"MOTO-0001\", \"placa\": \"ABC-1D23\", \"modelo\": \"Honda CG160\", \"status\": \"DISPONIVEL\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Criar moto\", function(){ pm.expect(pm.response.code).to.be.oneOf([200,201]); });",
+                  "try { var data = pm.response.json(); if (data.id) { pm.collectionVariables.set(\"motoId\", data.id); } } catch(e) {}",
+                  "pm.test(\"ID da moto salvo\", function(){ pm.expect(pm.collectionVariables.get(\"motoId\")).to.exist; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT /motos/{id} (atualizar)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/motos/{{motoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "motos",
+                "{{motoId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"sku\": \"MOTO-0001\", \"placa\": \"ABC-1D23\", \"modelo\": \"Honda CG160 Atualizada\", \"status\": \"DISPONIVEL\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PATCH /motos/{id}/status (alterar status)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/motos/{{motoId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "motos",
+                "{{motoId}}",
+                "status"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\": \"EM_USO\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE /motos/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/motos/{{motoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "motos",
+                "{{motoId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /motos/search?placa=ABC-1D23",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/motos/search?placa=ABC-1D23",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "motos",
+                "search?placa=ABC-1D23"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ocorrencias",
+      "item": [
+        {
+          "name": "GET /ocorrencias (lista)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ocorrencias?page=0&size=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ocorrencias?page=0&size=10"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /ocorrencias/{id}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ocorrencias/{{ocorrenciaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "{{ocorrenciaId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /ocorrencias (criar)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ocorrencias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ocorrencias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"motoId\": \"{{motoId}}\", \"tipo\": \"DANO\", \"descricao\": \"Risco no tanque\", \"status\": \"ABERTA\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Criar ocorrência\", function(){ pm.expect(pm.response.code).to.be.oneOf([200,201]); });",
+                  "try { var data = pm.response.json(); if (data.id) { pm.collectionVariables.set(\"ocorrenciaId\", data.id); } } catch(e) {}",
+                  "pm.test(\"ID da ocorrência salvo\", function(){ pm.expect(pm.collectionVariables.get(\"ocorrenciaId\")).to.exist; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT /ocorrencias/{id} (atualizar)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ocorrencias/{{ocorrenciaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "{{ocorrenciaId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"motoId\": \"{{motoId}}\", \"tipo\": \"DANO\", \"descricao\": \"Risco no tanque - atualizado\", \"status\": \"EM_ANDAMENTO\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PATCH /ocorrencias/{id}/status (alterar status)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ocorrencias/{{ocorrenciaId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "{{ocorrenciaId}}",
+                "status"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\": \"FECHADA\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE /ocorrencias/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ocorrencias/{{ocorrenciaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "{{ocorrenciaId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Swagger / OpenAPI",
+      "item": [
+        {
+          "name": "GET /swagger-ui.html",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/swagger-ui.html",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "swagger-ui.html"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /v3/api-docs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v3/api-docs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "api-docs"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status OK\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201,204,302]); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "username",
+      "value": "teste@lorarch.com"
+    },
+    {
+      "key": "password",
+      "value": "Lorarch@123"
+    },
+    {
+      "key": "motoId",
+      "value": ""
+    },
+    {
+      "key": "ocorrenciaId",
+      "value": ""
+    }
+  ]
+}
