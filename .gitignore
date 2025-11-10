@@ -1,4 +1,4 @@
-# Java / Gradle / IntelliJ
+
 .gradle/
 build/
 out/
@@ -12,6 +12,7 @@ out/
 logs/
 *.log
 # OS
+evidence/
 .DS_Store
 Thumbs.db
 # Node (if any frontend)
