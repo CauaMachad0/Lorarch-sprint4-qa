@@ -25,7 +25,6 @@ Validação de qualidade do sistema **LorArch** focada na **API Java + Interface
 │     ├─ LorArch_Sprint4_Postman_Collection.json
 │     └─ LorArch_Localhost.postman_environment.json
 ├─ evidence/
-│  └─ (adicione aqui prints da execução dos testes e screenshot do item Done no Boards)
 └─ .gitignore
 ```
 
@@ -116,7 +115,7 @@ O relatório HTML será salvo em `evidence/newman-report.html`.
 
 Preencha antes de enviar:
 - **Azure Boards (item Sprint 4):** <https://dev.azure.com/lorarch/LorArch/_workitems/edit/138>  
-- **Vídeo de execução:** 
+- **Vídeo de execução:** <https://www.youtube.com/watch?v=meP73Uc6n9c>
 
 ---
 
